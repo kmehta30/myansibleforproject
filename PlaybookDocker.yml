@@ -1,0 +1,16 @@
+- hosts: webservers
+  become: true
+  become_user: root
+  tasks:
+  - name: install docker
+    yum: name=docker state=present
+  - name: start docker
+    service: name=docker state=started
+  - name: install git
+    yum: name=git state=present
+  - name: get the dockerfile from githib
+    git: repo=https://github.com/Sonal0409/dockerdemo.git dest=/tmp/gitrepo
+  - name: build dockerfile
+    command: chdir=/tmp/gitrepo docker build -t deployimage:ansible .
+  - name: run the dockerfile
+    command: docker run -itd -P deployimage:ansible
