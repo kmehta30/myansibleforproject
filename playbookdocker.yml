@@ -10,7 +10,7 @@
   - name: install git
     yum: name=git state=present
   - name: clone a repo
-    git: repo=https://github.com/edureka-devops/projCert.git dest=/tmp/mygitrepo1
+    git: repo=https://github.com/kmehta30/projCert.git dest=/tmp/mygitrepo1
   - name: build docker file
     command: chdir=/tmp/mygitrepo1 docker build -t myadd:ansible2 .
   - name: create container
